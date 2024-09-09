@@ -5,8 +5,8 @@ public class CompletableFutureExemplo {
     public void run() throws ExecutionException, InterruptedException {
         CompletableFuture.supplyAsync(() -> {
             PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("pikachu");
-                pokemonAbilityFetch.fetch();
-                return "done";
+                String response = pokemonAbilityFetch.fetch();
+                return response;
         }).thenAccept((result) -> {
             System.out.println("task result: " + result);
         }).get();
