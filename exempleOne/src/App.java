@@ -13,6 +13,10 @@ public class App {
         threa2.start();
         threa3.start();
 
+        threa1.join();
+        threa2.join();
+        threa3.join();
+
         for (int i =0; i < 10; i++) {
             System.out.println("Main thread valor atual do lood "+i);
         }
