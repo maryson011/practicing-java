@@ -6,7 +6,7 @@ public class CompletableFutureExemplo {
         CompletableFuture.runAsync(() -> {
             PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("pikachu");
                 pokemonAbilityFetch.fetch();
-        }).get();
+        });
     }
 }
 
