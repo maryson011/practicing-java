@@ -7,8 +7,8 @@ public class CompletableFutureExemplo {
             PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("pikachu");
                 String response = pokemonAbilityFetch.fetch();
                 return response;
-        }).thenAccept((result) -> {
-            System.out.println("task result: " + result);
+        }).thenRun(() -> {
+            System.out.println("busca na API completa!");
         }).get();
     }
 }
