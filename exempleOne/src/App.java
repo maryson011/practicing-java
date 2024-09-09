@@ -1,15 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
 
-    public interface FactorialNumber {
-        boolean test(int a, int b);
-    }
     public static void main(String[] args) throws Exception {
-        FactorialNumber isFactor = (a, b) -> (b % a) == 0;
+        List<String>frutas = new ArrayList<>();
+        frutas.add("maçâ");
+        frutas.add("laranja");
 
-        if (isFactor.test(9, 5)) {
-            System.out.println("5 is a factor of 9");
-        } else {
-            System.out.println("5 is not a factor of 9");
-        }
+        frutas.stream().forEach(item -> System.out.println(item));
+        // utilizando :: (operador metodo de referência)
+        frutas.stream().forEach(System.out::println);
+        frutas.stream().forEach(String::new);
     }
 }
