@@ -3,19 +3,43 @@ import java.util.concurrent.ExecutionException;
 
 public class CompletableFutureExemplo {
     public void run() throws ExecutionException, InterruptedException {
-        CompletableFuture.supplyAsync(() -> {
+        CompletableFuture pikachu = CompletableFuture.supplyAsync(() -> {
             PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("pikachu");
                 String response = pokemonAbilityFetch.fetch();
                 return response;
-        }).thenCombine(CompletableFuture.supplyAsync(() -> {
+        });
+        CompletableFuture charmander = CompletableFuture.supplyAsync(() -> {
             PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("charmander");
                 String response = pokemonAbilityFetch.fetch();
                 return response;
-        }), (a, b) -> {
-            System.out.println("Pikachu response: " + a);
-            System.out.println("charmander response: " + b);
-            return "done";
+        });
+
+        CompletableFuture bulbasaur = CompletableFuture.supplyAsync(() -> {
+            PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("bulbasaur");
+                String response = pokemonAbilityFetch.fetch();
+                return response;
+        });
+
+        CompletableFuture squirtle = CompletableFuture.supplyAsync(() -> {
+            PokemonAbilityFetch pokemonAbilityFetch = new PokemonAbilityFetch("squirtle");
+                String response = pokemonAbilityFetch.fetch();
+                return response;
+        });
+
+        CompletableFuture allPokemons = CompletableFuture.allOf(pikachu, charmander, bulbasaur, squirtle);
+
+        // allPokemons.get();
+        allPokemons.thenRun(() -> {
+            try {
+                System.out.println("Pikachu" + pikachu.get());
+                System.out.println("Charmander" + charmander.get());
+                System.out.println("Bulbasaur " + bulbasaur.get());
+                System.out.println("Squirtle " + squirtle.get());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }).get();
+
     }
 }
 
