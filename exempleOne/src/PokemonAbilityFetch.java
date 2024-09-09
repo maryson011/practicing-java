@@ -14,7 +14,7 @@ public class PokemonAbilityFetch {
             String apiUrl = "https://pokeapi.co/api/v2/pokemon/";
             String response = httpClient.get(apiUrl + pokemonName);
             printPokemonAbilities(response, pokemonName);
-            return response.substring(0, 10);
+            return response.substring(0, 100);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
